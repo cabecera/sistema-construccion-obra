@@ -21,10 +21,10 @@ while True:
         while True:
             elige = input('\n Elije una opcion: \n\
                 \t Listar Constructoras(l)\n\
-                \t Buscar una Constructoras(b)\n\
-                \t Crear una Constructoras(c)\n\
-                \t Actualizar una Constructoras(a)\n\
-                \t Eliminar una Constructoras(e)\n\
+                \t Buscar una Constructora(b)\n\
+                \t Crear una Constructora(c)\n\
+                \t Actualizar una Constructora(a)\n\
+                \t Eliminar una Constructora(e)\n\
                 \t Fin(f)\n\
                 \t ==> \n ').lower()
             #Si elige una opcion de CRUD
@@ -32,9 +32,10 @@ while True:
                 cs.list_constructoras()
             elif elige == 'c':
                 cs.create_constructora()
-                
             elif elige == 'b':
                 cs.read_constructora()  
+            elif elige == 'a':
+                cs.update_constructoras()
             
             elif elige == 'f':
                 print('Fin')
@@ -50,9 +51,9 @@ while True:
         while True:
             elige = input('\n Elije una opcion: \n\
                 \t Listar Obras(l)\n\
-                \t Buscar una Obras(b)\n\
-                \t Crear una Obras(c)\n\
-                \t Actualizar una Obras(a)\n\
+                \t Buscar una Obra(b)\n\
+                \t Crear una Obra(c)\n\
+                \t Actualizar una Obra(a)\n\
                 \t Fin(f)\n\
                 \t ==> \n ').lower()
             #Si elige una opcion de CRUD
@@ -62,7 +63,9 @@ while True:
                 ob.create_obras()
             elif elige == 'b':
                 ob.read_obras()
-                    
+            elif elige == 'a':
+                ob.update_obras()
+                        
             elif elige == 'f':
                 print('Fin')
                 ob.cerrarBD()

@@ -22,9 +22,9 @@ class Obras():
             self.cursor.execute(sql)
             repu = self.cursor.fetchall()
             print((
-            f"{'Codigo Obra ':10}"
-            f"{'Id Constructora ':10}"
-            f"{'Descripción Obra ':12}"
+            f"{'Codigo Obra ':13}"
+            f"{'Id Constructora ':20}"
+            f"{'Descripción Obra ':15}"
             f"{'Costo de la Obra ':12}"
             f"{'Fecha Inicio ':12}"
             ))
@@ -84,9 +84,9 @@ class Obras():
             
     #READ
     def read_obras(self):    
-        id_buscar = input('Ingrese codigo a buscar = \n')
+        codigo_obra = input('Ingrese codigo a buscar = \n')
     
-        sql = 'select * from obras where codigoobra = '+repr(id_buscar) 
+        sql = 'select * from obras where codigoobra = '+repr(codigo_obra) 
         #repr agrega cremillas al cod
         try:
             self.cursor.execute(sql)
@@ -105,3 +105,42 @@ class Obras():
                 print('Codigo no existe en la base de datos')
         except Exception as err:
             print("Error al realizar la consulta", err)
+            
+            
+    #UPDATE
+    def update_obras(self):
+        codigo_obra = input('Ingrese codigo a buscar = \n')
+        sql1 = 'select * from obras where codigoobra ='+repr(codigo_obra)
+        try:
+            self.cursor.execute(sql1)
+            rep=self.cursor.fetchone()
+            if rep!= None:
+                print((
+                f"{'Codigo Obra':13}"
+                f"{'Id Constructora ':20}"
+                f"{'Descripcion':15}"
+                f"{'Costo ':12}"
+                f"{'Fecha Inicio':12}"
+                ))
+                
+                print(f"{rep[0]:13}{rep[1]:20}{rep[2]:15}{rep[3]:<12}{rep[4].strftime('%d/%m/%Y'):12}")
+                elige=input('\n Que desea modificar?\n Descripcion(d)\n Costo(c)\n').lower()
+                if elige=='d':
+                    campo='descripcionObra'
+                    nuevo=input('Ingrese nueva Descripcion=')
+                if elige=='c':
+                    campo='costo'
+                    nuevo=input('Ingrese nuevo costo=')
+                
+
+                sql2 = 'update obras set '+campo+'='+repr(nuevo)+' where codigoobra='+repr(codigo_obra)
+                try:
+                    self.cursor.execute(sql2)
+                    self.conexion.commit()
+                except Exception as err:
+                    self.conexion.rollback()
+                    print(err)
+            else:
+                print('No existe ese código')
+        except Exception as err: 
+            print(err)

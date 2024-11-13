@@ -77,3 +77,39 @@ class Constructoras():
                 print('Id no existe en la base de datos')
         except Exception as err:
             print("Error al realizar la consulta", err) 
+            
+    #UPDATE
+    def update_constructoras(self):
+        id_buscar = input('Ingrese ID de constructora que desea actualizar = \n')
+        sql1 = 'select * from constructoras where idconstructora='+repr(id_buscar)
+        try:
+            self.cursor.execute(sql1)
+            rep=self.cursor.fetchone()
+            if rep!= None:
+                print((
+                    f"{'ID Constructora':20}"
+                    f"{'Fono ':20}"
+                    f"{'Email ':12}"
+                    ))
+                print(f"{rep[0]:20}{rep[1]:20}{rep[2]:12}")
+                ##Da la opcion de elegir que desea modificar
+                elige=input('\n Que desea modificar?\n fono(f)\n email(e)\n').lower()
+                if elige=='f':
+                    campo='fono'
+                    nuevo=input('Ingrese nuevo fono= ')
+                if elige=='e':
+                    campo='email'
+                    nuevo=input('Ingrese nuevo email= ')
+                
+
+                sql2 = 'update constructoras set '+campo+'='+repr(nuevo)+' where idconstructora='+repr(id_buscar)
+                try:
+                    self.cursor.execute(sql2)
+                    self.conexion.commit()
+                except Exception as err:
+                    self.conexion.rollback()
+                    print(err)
+            else:
+                print('No existe ese código')
+        except Exception as err: 
+            print(err)
