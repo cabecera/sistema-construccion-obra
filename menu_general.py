@@ -36,7 +36,8 @@ while True:
                 cs.read_constructora()  
             elif elige == 'a':
                 cs.update_constructoras()
-            
+            elif elige == 'e':
+                cs.delete_constructora()
             elif elige == 'f':
                 print('Fin')
                 cs.cerrarBD()

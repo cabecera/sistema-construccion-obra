@@ -35,8 +35,8 @@ class Constructoras():
     def create_constructora(self):
         id_constructora = input('Ingrese ID de la constructora= \n')
         
-        if not id_constructora.isalnum() or len(id_constructora) != 10:
-            raise ValueError("El código debe ser un valor alfanumérico de exactamente 10 caracteres.")
+        #if not id_constructora.isalnum() or len(id_constructora) != 10:
+        #    raise ValueError("El código debe ser un valor alfanumérico de exactamente 10 caracteres.")
         
         sql1 = 'select idConstructora from constructoras where idConstructora ='+repr(id_constructora)
         try:
@@ -112,4 +112,31 @@ class Constructoras():
             else:
                 print('No existe ese código')
         except Exception as err: 
+            print(err)
+            
+    #DELETE        
+    def delete_constructora(self):
+        id_buscar = input('Ingrese ID de constructora que desea eliminar = \n')
+        sql1 = 'select * from constructoras where idconstructora='+repr(id_buscar)
+        try:
+            self.cursor.execute(sql1)
+            if self.cursor.fetchone() != None:
+                sql2 = 'select * from obras where idConstructora ='+repr(id_buscar)
+                try:
+                    self.cursor.execute(sql2)
+                    if self.cursor.fetchone()!= None:
+                        print('No se puede eliminar, porque esta en la tabla Obras')
+                    else:
+                        sql3 = 'delete from constructoras where idconstructora='+repr(id_buscar)
+                        try:
+                            self.cursor.execute(sql3)
+                            self.conexion.commit()
+                        except Exception as err:
+                            self.conexion.rollback()
+                            print(err)
+                except Exception as err:
+                    print(err)
+            else:
+                print('No existe este codigo')
+        except Exception as err:
             print(err)
