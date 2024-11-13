@@ -15,7 +15,7 @@ class Obras():
         self.cursor.close()
         self.conexion.close()
 
-    def listObras(self): 
+    def list_obras(self): 
         sql = 'select * from obras'
         try:
             self.cursor.execute(sql)

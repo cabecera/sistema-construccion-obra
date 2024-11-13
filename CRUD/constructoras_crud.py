@@ -16,7 +16,7 @@ class Constructoras():
         self.conexion.close()
         
     #Lista
-    def listConstructoras(self): 
+    def list_constructoras(self): 
         sql = 'select * from constructoras'
         try:
             self.cursor.execute(sql)
@@ -30,4 +30,28 @@ class Constructoras():
                 print(f"{rep[0]:10}{rep[1]:20}{rep[2]:12}")
         except Exception as err:
             print(err)
-    
+            
+    #CREATE
+    def create_constructora(self):
+        id_constructora = input('Ingrese ID de la constructora= \n')
+        
+        if not id_constructora.isalnum() or len(id_constructora) != 10:
+            raise ValueError("El código debe ser un número de exactamente 10 dígitos.") 
+        sql1 = 'select idconstructora from repuestos where idconstructora ='+repr(id_constructora)
+        try:
+            self.cursor.execute(sql1)
+            if self.cursor.fetchone() == None:
+                fono = input('Fono = \n') 
+                email = input('Email \n')
+                sql2 = "insert into constructoras values("+repr(id_constructora)+","+repr(fono)+\
+                    ","+repr(email)+")"
+                try:
+                    self.cursor.execute(sql2)
+                    self.conexion.commit()    
+                except Exception as err:
+                    self.conexion.rollback()
+                    print(err)
+            else:
+                print('Ya existe este ID')
+        except Exception as err:
+            print(err)   
