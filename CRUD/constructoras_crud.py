@@ -31,30 +31,3 @@ class Constructoras():
         except Exception as err:
             print(err)
     
-    
-    #MENU CONSTRUCTORA
-    
-    def default():
-        print("Opcion fuera de rango") 
-        return
-    def menu_constructoras ():
-        menu_constructora = {1:Constructoras.listConstructoras, 2:exit}
-    
-        respuesta = "si"
-        while respuesta =="si":
-            print("\n Menu de Constructoras ")
-            print("Opcion 1:  Listar constructoras")
-            print("Opcion 5:  Volver al menu principal")
-
-            try:   
-                opcion = int(input("Elija una opcion \n"))
-                if opcion ==5:
-                    respuesta = input("Seguro quiere salir al menú general?? si/no \n")
-                    respuesta = respuesta.lower()
-                
-                menu_constructora.get(opcion)()
-            except ValueError:
-                print("Error. Por favor, ingrese solo numeros")
-                import time
-                time.sleep(2)
-    
