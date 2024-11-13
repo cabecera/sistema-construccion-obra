@@ -30,6 +30,9 @@ while True:
             #Si elige una opcion de CRUD
             if elige == 'l':
                 cs.list_constructoras()
+            elif elige == 'c':
+                cs.create_constructora()
+                
             elif elige == 'f':
                 print('Fin')
                 cs.cerrarBD()
@@ -52,6 +55,9 @@ while True:
             #Si elige una opcion de CRUD
             if elige == 'l':
                 ob.list_obras()
+            elif elige == 'c':
+                ob.create_obras()
+                
             elif elige == 'f':
                 print('Fin')
                 ob.cerrarBD()

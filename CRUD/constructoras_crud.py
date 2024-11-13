@@ -36,15 +36,15 @@ class Constructoras():
         id_constructora = input('Ingrese ID de la constructora= \n')
         
         if not id_constructora.isalnum() or len(id_constructora) != 10:
-            raise ValueError("El código debe ser un número de exactamente 10 dígitos.") 
-        sql1 = 'select idconstructora from repuestos where idconstructora ='+repr(id_constructora)
+            raise ValueError("El código debe ser un valor alfanumérico de exactamente 10 caracteres.")
+        
+        sql1 = 'select idConstructora from constructoras where idConstructora ='+repr(id_constructora)
         try:
             self.cursor.execute(sql1)
             if self.cursor.fetchone() == None:
                 fono = input('Fono = \n') 
                 email = input('Email \n')
-                sql2 = "insert into constructoras values("+repr(id_constructora)+","+repr(fono)+\
-                    ","+repr(email)+")"
+                sql2 = "insert into constructoras values("+repr(id_constructora)+","+repr(fono)+","+repr(email)+")"
                 try:
                     self.cursor.execute(sql2)
                     self.conexion.commit()    
