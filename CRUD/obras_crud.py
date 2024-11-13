@@ -109,6 +109,10 @@ class Obras():
             
     #UPDATE
     def update_obras(self):
+        
+        #Llamar una funcion dentro de otra
+        self.list_obras()
+        
         codigo_obra = input('Ingrese codigo a buscar = \n')
         sql1 = 'select * from obras where codigoobra ='+repr(codigo_obra)
         try:

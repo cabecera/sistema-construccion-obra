@@ -80,6 +80,9 @@ class Constructoras():
             
     #UPDATE
     def update_constructoras(self):
+        #Llamar una funcion dentro de otra
+        self.list_constructoras()
+        
         id_buscar = input('Ingrese ID de constructora que desea actualizar = \n')
         sql1 = 'select * from constructoras where idconstructora='+repr(id_buscar)
         try:
@@ -116,6 +119,9 @@ class Constructoras():
             
     #DELETE        
     def delete_constructora(self):
+        #Llamar una funcion dentro de otra
+        self.list_constructoras()
+        
         id_buscar = input('Ingrese ID de constructora que desea eliminar = \n')
         sql1 = 'select * from constructoras where idconstructora='+repr(id_buscar)
         try:
