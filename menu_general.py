@@ -3,28 +3,93 @@ from CRUD.constructoras_crud import *
 from CRUD.obras_crud import *
 from os import system
 
+cs = Constructoras()
+ob = Obras()
 
-# cs = Constructoras()
-# ob = Obras()
-
-
-def default():
-    print("Opcion fuera de rango") 
-    return
-
-menu_general = {1:Constructoras.menu_constructoras, 2:Obras, 2:exit}
+def cerrarBD(self):
+    self.cursor.close()
+    self.conexion.close()
 
 while True:
-        print("\n Menu general ")
-        print("1. Menu Constructoras")
-        print("2. Menu Obras")
-        print("3. Fin")
+    elige = input('\n Elije una opcion: \n\
+        \t Menu Constructoras(c)\n\
+        \t Menu Obras(o)\n\
+        \t Fin(f)\n\
+        \t ==> \n ').lower()
+    #Si elige la opcion de menu constructora
+    if elige == 'c':
+        while True:
+            elige = input('\n Elije una opcion: \n\
+                \t Listar Constructoras(l)\n\
+                \t Buscar una Constructoras(b)\n\
+                \t Crear una Constructoras(c)\n\
+                \t Actualizar una Constructoras(a)\n\
+                \t Eliminar una Constructoras(e)\n\
+                \t Fin(f)\n\
+                \t ==> \n ').lower()
+            #Si elige una opcion de CRUD
+            if elige == 'l':
+                cs.listConstructoras()
+            elif elige == 'f':
+                print('Fin')
+                cs.cerrarBD()
+                break
+            else:
+                print('Error de opción')
+            input('Pulse Enter para continuar...')
+            system('cls')
+            
+    #Si elige la opcion de menu obras     
+    elif elige == 'o':
+        while True:
+            elige = input('\n Elije una opcion: \n\
+                \t Listar Obras(l)\n\
+                \t Buscar una Obras(b)\n\
+                \t Crear una Obras(c)\n\
+                \t Actualizar una Obras(a)\n\
+                \t Fin(f)\n\
+                \t ==> \n ').lower()
+            #Si elige una opcion de CRUD
+            if elige == 'l':
+                ob.listObras()
+            elif elige == 'f':
+                print('Fin')
+                ob.cerrarBD()
+                break
+            else:
+                print('Error de opción')
+            input('Pulse Enter para continuar...')
+            system('cls')
+    
+    elif elige == 'f':
+        print('Fin')
+        cerrarBD()
+        break
+    else:
+        print('Error de opción')    
+    input('Pulse Enter para continuar...')
+    system('cls')
+            
 
-        try: ##validacion solo numeros
-            opcion = int(input("ELija una opción \n"))
-            menu_general.get(opcion, default)()
-        except ValueError:
-            print("Error. Por favor, ingrese solo numeros")
+    
+    
+# def default():
+#     print("Opcion fuera de rango") 
+#     return
+
+# menu_general = {1:Constructoras.menu_constructoras, 2:Obras, 2:exit}
+
+# while True:
+#         print("\n Menu general ")
+#         print("1. Menu Constructoras")
+#         print("2. Menu Obras")
+#         print("3. Fin")
+
+#         try: ##validacion solo numeros
+#             opcion = int(input("ELija una opción \n"))
+#             menu_general.get(opcion, default)()
+#         except ValueError:
+#             print("Error. Por favor, ingrese solo numeros")
         
-        input('Pulse Enter para continuar...')
-        system('cls')
+#         input('Pulse Enter para continuar...')
+#         system('cls')
