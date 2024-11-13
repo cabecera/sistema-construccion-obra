@@ -33,6 +33,9 @@ while True:
             elif elige == 'c':
                 cs.create_constructora()
                 
+            elif elige == 'b':
+                cs.read_constructora()  
+            
             elif elige == 'f':
                 print('Fin')
                 cs.cerrarBD()
@@ -57,7 +60,9 @@ while True:
                 ob.list_obras()
             elif elige == 'c':
                 ob.create_obras()
-                
+            elif elige == 'b':
+                ob.read_obras()
+                    
             elif elige == 'f':
                 print('Fin')
                 ob.cerrarBD()

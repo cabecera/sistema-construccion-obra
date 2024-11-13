@@ -54,4 +54,26 @@ class Constructoras():
             else:
                 print('Ya existe este ID')
         except Exception as err:
-            print(err)   
+            print(err)  
+            
+    #READ
+    def read_constructora(self):    
+        id_buscar = input('Ingrese ID de constructora a buscar = \n')
+    
+        sql = 'select * from constructoras where idconstructora = '+repr(id_buscar) 
+        #repr agrega cremillas al cod
+        try:
+            self.cursor.execute(sql)
+            rep = self.cursor.fetchone()
+            if rep is not None:
+                print((
+                f"{'ID Constructora':10}"
+                f"{'Fono ':20}"
+                f"{'Email ':12}"
+                ))
+                
+                print(f"{rep[0]:10}{rep[1]:20}{rep[2]:12}")
+            else:
+                print('Id no existe en la base de datos')
+        except Exception as err:
+            print("Error al realizar la consulta", err) 

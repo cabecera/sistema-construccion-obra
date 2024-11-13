@@ -80,3 +80,28 @@ class Obras():
                 print('Ya existe este ID')
         except Exception as err:
             print(err) 
+            
+            
+    #READ
+    def read_obras(self):    
+        id_buscar = input('Ingrese codigo a buscar = \n')
+    
+        sql = 'select * from obras where codigoobra = '+repr(id_buscar) 
+        #repr agrega cremillas al cod
+        try:
+            self.cursor.execute(sql)
+            rep = self.cursor.fetchone()
+            if rep is not None:
+                print((
+                f"{'Codigo Obra':10}"
+                f"{'Ide Constructora ':20}"
+                f"{'Descripcion ':12}"
+                f"{'Costo ':12}"
+                f"{'Fecha Inicio':12}"
+                ))
+                
+                print(f"{rep[0]:10}{rep[1]:20}{rep[2]:20}{rep[3]:<12}{rep[4].strftime('%d/%m/%Y'):12}")
+            else:
+                print('Codigo no existe en la base de datos')
+        except Exception as err:
+            print("Error al realizar la consulta", err)
