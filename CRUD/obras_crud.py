@@ -7,7 +7,7 @@ class Obras():
             host = 'localhost',
             user = 'root',
             password = 'carlos123',
-            database = 'empresa'
+            database = 'unidad'
         )
         self.cursor = self.conexion.cursor()    
 
@@ -148,3 +148,33 @@ class Obras():
                 print('No existe ese código')
         except Exception as err: 
             print(err)
+            
+    #Menu para ser llamado en DataBaseMD5 
+    def menu_obras(self):
+        while True:
+            elige = input('\n Elije una opcion: \n\
+                \t Listar Obras(l)\n\
+                \t Buscar una Obra(b)\n\
+                \t Crear una Obra(c)\n\
+                \t Actualizar una Obra(a)\n\
+                \t Fin(f)\n\
+                \t ==> \n ').lower()
+            #Si elige una opcion de CRUD
+            if elige == 'l':
+                self.list_obras()
+            elif elige == 'c':
+                self.create_obras()
+            elif elige == 'b':
+                self.read_obras()
+            elif elige == 'a':
+                self.update_obras()
+                        
+            elif elige == 'f':
+                print('Fin')
+                self.cerrarBD()
+                break
+            else:
+                print('Error de opción')
+            input('Pulse Enter para continuar...')
+            system('cls')
+    

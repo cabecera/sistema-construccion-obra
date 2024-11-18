@@ -1,12 +1,14 @@
 import mysql.connector
 from os import system
+
+
 class Constructoras(): 
     def __init__(self):  
         self.conexion = mysql.connector.connect( 
             host = 'localhost',
             user = 'root',
             password = 'carlos123',
-            database = 'empresa'
+            database = 'unidad'
         )
         self.cursor = self.conexion.cursor()    
     
@@ -146,3 +148,34 @@ class Constructoras():
                 print('No existe este codigo')
         except Exception as err:
             print(err)
+            
+    #Menu para ser llamado en DataBaseMD5 
+    def menu_constructoras(self):
+        while True:
+            elige = input('\n Elije una opcion: \n\
+                        \t Listar Constructoras(l)\n\
+                        \t Buscar una Constructora(b)\n\
+                        \t Crear una Constructora(c)\n\
+                        \t Actualizar una Constructora(a)\n\
+                        \t Eliminar una Constructora(e)\n\
+                        \t Fin(f)\n\
+                        \t ==> \n ').lower()
+            #Si elige una opcion de CRUD
+            if elige == 'l':
+                self.list_constructoras()
+            elif elige == 'c':
+                self.create_constructora()
+            elif elige == 'b':
+                self.read_constructora()  
+            elif elige == 'a':
+                self.update_constructoras()
+            elif elige == 'e':
+                self.delete_constructora()
+            elif elige == 'f':
+                print('Fin')
+                self.cerrarBD()
+                break
+            else:
+                print('Error de opción')
+            input('Pulse Enter para continuar...')
+            system('cls')
