@@ -1,12 +1,13 @@
 --Creacion base de datos en mysql
-create database certamen;
-use empresa
+create database unidad;
+use unidad
 
+--Tablas segunda unidad
 CREATE TABLE Constructoras (
     idConstructora VARCHAR(10) NOT NULL PRIMARY KEY,
-    fono VARCHAR(10),
-    email VERCHAR(30)
-)ENGINE=InnoDB;
+    fono VARCHAR(15),
+    email VARCHAR(30)
+) ENGINE=InnoDB;
 
 CREATE TABLE Obras (
     codigoObra VARCHAR(10) NOT NULL PRIMARY KEY,
@@ -16,6 +17,14 @@ CREATE TABLE Obras (
     fechaInicio DATE,
     FOREIGN KEY (idConstructora) REFERENCES Constructoras(idConstructora)
 ) ENGINE=InnoDB;
+
+--Tablas tercera unidad - LOGIN
+
+CREATE TABLE USUARIOS(
+	nombre varchar(20),
+	password varchar(32)
+) ENGINE=InnoDB;
+
 
 insert into Constructoras values('t100','+56912321579','inacap@gmail.com');
 insert into Constructoras values('t200','+56965781689','carlitos@gmail.com');
