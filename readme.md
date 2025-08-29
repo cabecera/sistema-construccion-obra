@@ -1,3 +1,5 @@
+# sistema-construccion-obra - Asignatura Programacion orientada a objetos
+
 ## Antes de ejecutar el codigo:
 
 1. **Instalar la biblioteca de conexión a MySQL (segunda unidad):**
